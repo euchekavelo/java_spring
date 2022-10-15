@@ -20,4 +20,12 @@ public class ContactConfirmationError {
     public void setError(String error) {
         this.error = error;
     }
+
+    @Override
+    public String toString() {
+        return "ContactConfirmationError{" +
+                "result=" + result +
+                ", error='" + error + '\'' +
+                '}';
+    }
 }

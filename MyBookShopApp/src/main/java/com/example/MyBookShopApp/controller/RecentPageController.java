@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.service.RecentPageService;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/books/recent")
+@InfoLogs
 public class RecentPageController {
 
     private final RecentPageService recentPageService;

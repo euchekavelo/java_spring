@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.exception.EmptySearchException;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.model.Tag;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@InfoLogs
 public class MainPageController {
 
     private final MainPageService mainPageService;

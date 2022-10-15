@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.model.Author;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.repository.AuthorRepository;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@DebugLogs
 public class AuthorPageService {
 
     private final AuthorRepository authorRepository;

@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.model.Tag;
 import com.example.MyBookShopApp.service.TagPageService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@InfoLogs
 public class TagPageController {
 
     private final TagPageService tagPageService;

@@ -2,16 +2,15 @@ package com.example.MyBookShopApp.security.jwt;
 
 import com.example.MyBookShopApp.security.BookstoreUserDetails;
 import com.example.MyBookShopApp.security.service.BookstoreUserDetailsService;
-import com.example.MyBookShopApp.dto.ContactConfirmationError;
 import com.example.MyBookShopApp.service.JWTBlackListService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.JwtException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -19,7 +18,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
@@ -27,13 +25,16 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private final BookstoreUserDetailsService bookstoreUserDetailsService;
     private final JWTBlackListService jwtBlackListService;
     private final JWTUtil jwtUtil;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
+    @Autowired
     public JWTRequestFilter(BookstoreUserDetailsService bookstoreUserDetailsService,
-                            JWTBlackListService jwtBlackListService, JWTUtil jwtUtil) {
+                            JWTBlackListService jwtBlackListService, JWTUtil jwtUtil, HandlerExceptionResolver handlerExceptionResolver) {
 
         this.bookstoreUserDetailsService = bookstoreUserDetailsService;
         this.jwtBlackListService = jwtBlackListService;
         this.jwtUtil = jwtUtil;
+        this.handlerExceptionResolver = handlerExceptionResolver;
     }
 
     @Override
@@ -69,18 +70,7 @@ public class JWTRequestFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         } catch (JwtException|IllegalArgumentException ex) {
-            returnAnErrorResponse(ex, httpServletResponse);
+            handlerExceptionResolver.resolveException(httpServletRequest, httpServletResponse, null, ex);
         }
-    }
-
-    private void returnAnErrorResponse(Exception ex, HttpServletResponse httpServletResponse) throws IOException {
-        Logger.getLogger(this.getClass().getSimpleName()).severe(ex.getMessage());
-        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
-        contactConfirmationError.setResult(false);
-        contactConfirmationError.setError(ex.getMessage());
-        httpServletResponse.setStatus(401);
-        httpServletResponse.setContentType(MimeTypeUtils.APPLICATION_JSON_VALUE);
-        httpServletResponse.getWriter().write(new ObjectMapper().writeValueAsString(contactConfirmationError));
-        httpServletResponse.getWriter().flush();
     }
 }

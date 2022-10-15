@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.security.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.dto.ContactConfirmationPayload;
 import com.example.MyBookShopApp.dto.ContactConfirmationResponse;
 import com.example.MyBookShopApp.model.User;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@DebugLogs
 public class BookstoreUserAuthorization {
 
     private final AuthenticationManager authenticationManager;

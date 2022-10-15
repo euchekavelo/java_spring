@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.dto.ApiResponse;
 import com.example.MyBookShopApp.exception.BookstoreApiWrongParameterException;
 import com.example.MyBookShopApp.model.Book;
@@ -18,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Api(description = "book data api")
+@InfoLogs
 public class BooksRestApiController {
 
     private final BookService bookService;

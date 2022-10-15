@@ -20,4 +20,12 @@ public class BookReviewDto {
     public void setText(String text) {
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return "BookReviewDto{" +
+                "bookId=" + bookId +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }

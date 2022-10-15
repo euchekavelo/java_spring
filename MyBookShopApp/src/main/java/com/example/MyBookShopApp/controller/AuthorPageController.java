@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.dto.SearchWordDto;
 import com.example.MyBookShopApp.model.Author;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@InfoLogs
 public class AuthorPageController {
 
     private final AuthorPageService authorPageService;

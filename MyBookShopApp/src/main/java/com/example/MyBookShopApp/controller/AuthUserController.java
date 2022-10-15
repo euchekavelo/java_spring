@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.exception.EmptyException;
 import com.example.MyBookShopApp.exception.UserExistException;
 import com.example.MyBookShopApp.security.service.BookstoreUserAuthorization;
@@ -7,7 +8,6 @@ import com.example.MyBookShopApp.security.service.BookstoreUserRegister;
 import com.example.MyBookShopApp.dto.ContactConfirmationPayload;
 import com.example.MyBookShopApp.dto.ContactConfirmationResponse;
 import com.example.MyBookShopApp.dto.RegistrationForm;
-import com.example.MyBookShopApp.service.JWTBlackListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
+@InfoLogs
 public class AuthUserController {
 
     private final BookstoreUserRegister userRegister;

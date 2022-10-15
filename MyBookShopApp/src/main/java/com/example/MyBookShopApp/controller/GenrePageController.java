@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.model.Genre;
 import com.example.MyBookShopApp.service.GenrePageService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Optional;
 
 @Controller
+@InfoLogs
 public class GenrePageController {
 
     private final GenrePageService genrePageService;

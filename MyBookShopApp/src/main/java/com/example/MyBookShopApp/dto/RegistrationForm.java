@@ -38,4 +38,14 @@ public class RegistrationForm {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    @Override
+    public String toString() {
+        return "RegistrationForm{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", pass='" + pass + '\'' +
+                '}';
+    }
 }

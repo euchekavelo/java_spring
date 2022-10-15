@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.security.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.dto.RegistrationForm;
 import com.example.MyBookShopApp.exception.EmptyException;
 import com.example.MyBookShopApp.exception.UserExistException;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 
 @Service
+@DebugLogs
 public class BookstoreUserRegister {
 
     private final UserRepository userRepository;
