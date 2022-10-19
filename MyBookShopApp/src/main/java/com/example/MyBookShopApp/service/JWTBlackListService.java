@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.exception.UsedTokenException;
 import com.example.MyBookShopApp.model.JWTBlackList;
 import com.example.MyBookShopApp.repository.JWTBlackListRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@DebugLogs
 public class JWTBlackListService {
 
     private final JWTBlackListRepository jwtBlackListRepository;
@@ -19,9 +21,11 @@ public class JWTBlackListService {
     }
 
     public void saveToken(String token) {
-        JWTBlackList jwtBlackList = new JWTBlackList();
-        jwtBlackList.setValue(token);
-        jwtBlackListRepository.save(jwtBlackList);
+        if (!getTokenByValue(token).isPresent()) {
+            JWTBlackList jwtBlackList = new JWTBlackList();
+            jwtBlackList.setValue(token);
+            jwtBlackListRepository.save(jwtBlackList);
+        }
     }
 
     public Optional<JWTBlackList> getTokenByValue(String token) {

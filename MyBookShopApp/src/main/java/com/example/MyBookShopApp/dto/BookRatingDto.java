@@ -20,4 +20,12 @@ public class BookRatingDto {
     public void setValue(Integer value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "BookRatingDto{" +
+                "bookId=" + bookId +
+                ", value=" + value +
+                '}';
+    }
 }

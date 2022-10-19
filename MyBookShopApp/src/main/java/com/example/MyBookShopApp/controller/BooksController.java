@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.data.ResourceStorage;
 import com.example.MyBookShopApp.dto.*;
 import com.example.MyBookShopApp.exception.NotFoundException;
@@ -18,17 +19,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.StringJoiner;
 import java.util.logging.Logger;
 
 @Controller
+@InfoLogs
 public class BooksController {
 
     private final BookService bookService;

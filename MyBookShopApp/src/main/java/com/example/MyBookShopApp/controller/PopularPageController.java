@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.controller;
 
+import com.example.MyBookShopApp.logging.annotation.InfoLogs;
 import com.example.MyBookShopApp.dto.BooksPageDto;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.service.BooksRatingAndPopularityService;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/books/popular")
+@InfoLogs
 public class PopularPageController {
 
     private final BooksRatingAndPopularityService booksRatingAndPopularityService;

@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.repository;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.model.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@DebugLogs
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
     List<Book> findBooksByTitleContaining(String bookTitle);

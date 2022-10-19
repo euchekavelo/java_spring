@@ -20,4 +20,12 @@ public class BookReviewLikeDto {
     public void setValue(Short value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "BookReviewLikeDto{" +
+                "reviewId=" + reviewId +
+                ", value=" + value +
+                '}';
+    }
 }

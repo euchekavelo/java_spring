@@ -2,6 +2,14 @@ package com.example.MyBookShopApp.dto;
 
 public class ChangeBookStatusDto {
 
+    private String status;
+    private Integer booksIds;
+
+    public ChangeBookStatusDto(String status, Integer booksIds) {
+        this.status = status;
+        this.booksIds = booksIds;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -18,11 +26,11 @@ public class ChangeBookStatusDto {
         this.booksIds = booksIds;
     }
 
-    private String status;
-    private Integer booksIds;
-
-    public ChangeBookStatusDto(String status, Integer booksIds) {
-        this.status = status;
-        this.booksIds = booksIds;
+    @Override
+    public String toString() {
+        return "ChangeBookStatusDto{" +
+                "status='" + status + '\'' +
+                ", booksIds=" + booksIds +
+                '}';
     }
 }

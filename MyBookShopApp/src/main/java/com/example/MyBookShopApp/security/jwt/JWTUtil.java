@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.security.jwt;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@DebugLogs
 public class JWTUtil {
 
     @Value("auth.secret")

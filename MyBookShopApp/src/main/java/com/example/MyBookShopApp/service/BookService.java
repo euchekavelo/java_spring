@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.dto.AssessmentDto;
 import com.example.MyBookShopApp.dto.ChangeBookStatusDto;
 import com.example.MyBookShopApp.exception.BookstoreApiWrongParameterException;
@@ -21,6 +22,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@DebugLogs
 public class BookService {
 
     private final BookRepository bookRepository;

@@ -17,4 +17,11 @@ public class SearchWordDto {
     public void setExample(String example) {
         this.example = example;
     }
+
+    @Override
+    public String toString() {
+        return "SearchWordDto{" +
+                "example='" + example + '\'' +
+                '}';
+    }
 }

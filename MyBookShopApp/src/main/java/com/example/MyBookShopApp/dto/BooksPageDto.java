@@ -29,4 +29,12 @@ public class BooksPageDto {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
+    @Override
+    public String toString() {
+        return "BooksPageDto{" +
+                "count=" + count +
+                ", books=" + books +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.model.Genre;
 import com.example.MyBookShopApp.repository.BookRepository;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@DebugLogs
 public class GenrePageService {
 
     private final GenreRepository genreRepository;

@@ -1,5 +1,6 @@
 package com.example.MyBookShopApp.service;
 
+import com.example.MyBookShopApp.logging.annotation.DebugLogs;
 import com.example.MyBookShopApp.model.Book;
 import com.example.MyBookShopApp.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
+@DebugLogs
 public class RecentPageService {
 
     private final BookRepository bookRepository;
