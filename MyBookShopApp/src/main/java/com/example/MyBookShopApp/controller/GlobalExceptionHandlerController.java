@@ -62,10 +62,25 @@ public class GlobalExceptionHandlerController extends ResponseEntityExceptionHan
     }
 
     @ExceptionHandler({JwtException.class, IllegalArgumentException.class})
-    public HttpServletResponse handleJwtException(JwtException e, HttpServletResponse httpServletResponse)
+    public HttpServletResponse handleJwtException(HttpServletResponse httpServletResponse)
             throws IOException {
 
         httpServletResponse.sendRedirect("/logout");
         return httpServletResponse;
+    }
+
+    @ExceptionHandler(NumberFormatException.class)
+    @ResponseBody
+    public ContactConfirmationError handleNumberFormatException() {
+        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
+        contactConfirmationError.setResult(false);
+        contactConfirmationError.setError("Incorrect sum value was entered");
+        return contactConfirmationError;
+    }
+
+    @ExceptionHandler(NegativeBalanceException.class)
+    public String handleNegativeBalanceException(NegativeBalanceException e, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("resultError", e.getMessage());
+        return "redirect:/profile#topup";
     }
 }

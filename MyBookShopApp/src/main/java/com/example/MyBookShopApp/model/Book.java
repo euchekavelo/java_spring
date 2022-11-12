@@ -81,6 +81,17 @@ public class Book {
     @JsonIgnore
     private List<User> listAppraisers;
 
+    @ManyToMany
+    @JoinTable(name = "balance_transaction2book",
+    joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "balance_id"))
+    @JsonIgnore
+    private List<BalanceTransaction> balanceTransactionList;
+
+    public List<BalanceTransaction> getBalanceTransactionList() {
+        return balanceTransactionList;
+    }
+
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 

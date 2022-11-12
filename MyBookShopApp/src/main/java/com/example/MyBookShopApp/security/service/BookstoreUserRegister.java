@@ -39,6 +39,7 @@ public class BookstoreUserRegister {
         if (!userRepository.findUserByEmail(email).isPresent() && !userRepository.findUserByPhone(phone).isPresent()) {
             User user = new User();
             user.setName(name);
+            user.setBalance(0.0);
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(registrationForm.getPass()));
             user.setPhone(phone);

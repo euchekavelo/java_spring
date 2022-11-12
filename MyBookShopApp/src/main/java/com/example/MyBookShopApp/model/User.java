@@ -17,12 +17,15 @@ public class User {
     private String hash;
     private Date regTime;
 
-    @ColumnDefault("0")
-    private Integer balance;
+    @ColumnDefault("0.0")
+    private Double balance;
     private String name;
     private String email;
     private String password;
     private String phone;
+
+    @OneToMany(mappedBy = "user")
+    private List<BalanceTransaction> balanceTransactionList;
 
     public String getPhone() {
         return phone;
@@ -76,11 +79,11 @@ public class User {
         this.regTime = regTime;
     }
 
-    public Integer getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -90,5 +93,9 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<BalanceTransaction> getBalanceTransactionList() {
+        return balanceTransactionList;
     }
 }
