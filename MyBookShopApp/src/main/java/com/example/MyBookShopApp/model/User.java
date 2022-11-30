@@ -25,6 +25,12 @@ public class User {
     private String phone;
 
     @OneToMany(mappedBy = "user")
+    private List<MailCode> mailCodeList;
+
+    @OneToMany(mappedBy = "user")
+    private List<PhoneCode> phoneCodeList;
+
+    @OneToMany(mappedBy = "user")
     private List<BalanceTransaction> balanceTransactionList;
 
     public String getPhone() {
@@ -97,5 +103,13 @@ public class User {
 
     public List<BalanceTransaction> getBalanceTransactionList() {
         return balanceTransactionList;
+    }
+
+    public List<MailCode> getMailCodeList() {
+        return mailCodeList;
+    }
+
+    public List<PhoneCode> getPhoneCodeList() {
+        return phoneCodeList;
     }
 }

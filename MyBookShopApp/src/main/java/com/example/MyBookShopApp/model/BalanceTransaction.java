@@ -1,7 +1,10 @@
 package com.example.MyBookShopApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,8 +25,12 @@ public class BalanceTransaction {
     @Column(columnDefinition = "REAL NOT NULL DEFAULT 0")
     private Double value;
 
-    @ManyToMany(mappedBy = "balanceTransactionList")
-    private List<Book> bookList;
+    @ManyToMany
+    @JoinTable(name = "balance_transaction2book",
+            joinColumns = @JoinColumn(name = "balance_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @JsonIgnore
+    private List<Book> bookList = new ArrayList<>();
 
     @Column(columnDefinition = "TEXT NOT NULL")
     private String description;

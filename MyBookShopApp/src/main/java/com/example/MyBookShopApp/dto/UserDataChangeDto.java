@@ -2,6 +2,12 @@ package com.example.MyBookShopApp.dto;
 
 public class UserDataChangeDto {
 
+    private String name;
+    private String mail;
+    private String phone;
+    private String password;
+    private String passwordReply;
+
     public String getName() {
         return name;
     }
@@ -41,10 +47,4 @@ public class UserDataChangeDto {
     public void setPasswordReply(String passwordReply) {
         this.passwordReply = passwordReply;
     }
-
-    private String name;
-    private String mail;
-    private String phone;
-    private String password;
-    private String passwordReply;
 }
