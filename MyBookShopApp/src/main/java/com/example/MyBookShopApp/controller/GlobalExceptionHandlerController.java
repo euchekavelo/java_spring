@@ -29,15 +29,6 @@ public class GlobalExceptionHandlerController extends ResponseEntityExceptionHan
         return "redirect:/";
     }
 
-    @ExceptionHandler(UsernameNotFoundException.class)
-    @ResponseBody
-    public ContactConfirmationError handleUsernameNotFoundException(UsernameNotFoundException ex) {
-        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
-        contactConfirmationError.setResult(false);
-        contactConfirmationError.setError(ex.getMessage());
-        return contactConfirmationError;
-    }
-
     @ExceptionHandler(UserExistException.class)
     public String handUserExistException(UserExistException e, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("resultError", e);
@@ -52,20 +43,36 @@ public class GlobalExceptionHandlerController extends ResponseEntityExceptionHan
         return ResponseEntity.badRequest().body(contactConfirmationError);
     }
 
-    @ExceptionHandler(RecordExistException.class)
-    @ResponseBody
-    public ContactConfirmationError handleRecordExistException(RecordExistException e) {
-        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
-        contactConfirmationError.setResult(false);
-        contactConfirmationError.setError(e.getMessage());
-        return contactConfirmationError;
-    }
-
     @ExceptionHandler({JwtException.class, IllegalArgumentException.class})
-    public HttpServletResponse handleJwtException(JwtException e, HttpServletResponse httpServletResponse)
+    public HttpServletResponse handleJwtException(HttpServletResponse httpServletResponse)
             throws IOException {
 
         httpServletResponse.sendRedirect("/logout");
         return httpServletResponse;
+    }
+
+    @ExceptionHandler(NumberFormatException.class)
+    @ResponseBody
+    public ContactConfirmationError handleNumberFormatException() {
+        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
+        contactConfirmationError.setResult(false);
+        contactConfirmationError.setError("Incorrect sum value was entered");
+        return contactConfirmationError;
+    }
+
+    @ExceptionHandler(NegativeBalanceException.class)
+    public String handleNegativeBalanceException(NegativeBalanceException e, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("resultError", e.getMessage());
+        return "redirect:/profile#topup";
+    }
+
+    @ExceptionHandler({PhoneUserNotFoundException.class, UsernameNotFoundException.class, RecordExistException.class,
+     EmptyPasswordException.class, SmsCodeException.class, MailCodeException.class, CodesNotFoundException.class})
+    @ResponseBody
+    public ContactConfirmationError handlePhoneUserNotFoundException(Exception exception) {
+        ContactConfirmationError contactConfirmationError = new ContactConfirmationError();
+        contactConfirmationError.setResult(false);
+        contactConfirmationError.setError(exception.getMessage());
+        return contactConfirmationError;
     }
 }

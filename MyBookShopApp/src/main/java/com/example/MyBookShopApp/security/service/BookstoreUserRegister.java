@@ -28,7 +28,7 @@ public class BookstoreUserRegister {
     public User registerNewUser(RegistrationForm registrationForm) throws UserExistException, EmptyException {
         String name = registrationForm.getName();
         String email = registrationForm.getEmail();
-        String phone = registrationForm.getPhone();
+        String phone = registrationForm.getPhone().replaceAll("[+\\s()-]*","");;
         String pass = registrationForm.getPass();
 
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || pass.isEmpty()) {
@@ -39,6 +39,7 @@ public class BookstoreUserRegister {
         if (!userRepository.findUserByEmail(email).isPresent() && !userRepository.findUserByPhone(phone).isPresent()) {
             User user = new User();
             user.setName(name);
+            user.setBalance(0.0);
             user.setEmail(email);
             user.setPassword(passwordEncoder.encode(registrationForm.getPass()));
             user.setPhone(phone);

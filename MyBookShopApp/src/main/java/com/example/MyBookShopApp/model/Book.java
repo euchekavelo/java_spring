@@ -81,6 +81,13 @@ public class Book {
     @JsonIgnore
     private List<User> listAppraisers;
 
+    @ManyToMany(mappedBy = "bookList")
+    private List<BalanceTransaction> balanceTransactionList = new ArrayList<>();
+
+    public List<BalanceTransaction> getBalanceTransactionList() {
+        return balanceTransactionList;
+    }
+
     @OneToMany(mappedBy = "book")
     private List<BookFile> bookFileList = new ArrayList<>();
 
